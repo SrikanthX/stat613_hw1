@@ -1,0 +1,866 @@
+﻿[
+ {
+  "reason" : 2,
+  "quitnumber" : 1
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 2
+ },
+ {
+  "reason" : 2,
+  "quitnumber" : 3
+ },
+ {
+  "reason" : 2,
+  "quitnumber" : 4
+ },
+ {
+  "reason" : 3,
+  "quitnumber" : 5
+ },
+ {
+  "reason" : 3,
+  "quitnumber" : 6
+ },
+ {
+  "reason" : 3,
+  "quitnumber" : 7
+ },
+ {
+  "reason" : 4,
+  "quitnumber" : 8
+ },
+ {
+  "reason" : 2,
+  "quitnumber" : 9
+ },
+ {
+  "reason" : 4,
+  "quitnumber" : 10
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 11
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 12
+ },
+ {
+  "reason" : 5,
+  "quitnumber" : 13
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 14
+ },
+ {
+  "reason" : 1,
+  "quitnumber" : 15
+ },
+ {
+  "reason" : 2,
+  "quitnumber" : 16
+ },
+ {
+  "reason" : 4,
+  "quitnumber" : 17
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 18
+ },
+ {
+  "reason" : 3,
+  "quitnumber" : 19
+ },
+ {
+  "reason" : 3,
+  "quitnumber" : 20
+ },
+ {
+  "reason" : 5,
+  "quitnumber" : 21
+ },
+ {
+  "reason" : 5,
+  "quitnumber" : 22
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 23
+ },
+ {
+  "reason" : 2,
+  "quitnumber" : 24
+ },
+ {
+  "reason" : 4,
+  "quitnumber" : 25
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 26
+ },
+ {
+  "reason" : 6,
+  "quitnumber" : 27
+ },
+ {
+  "reason" : 1,
+  "quitnumber" : 28
+ },
+ {
+  "reason" : 7,
+  "quitnumber" : 29
+ },
+ {
+  "reason" : 2,
+  "quitnumber" : 30
+ },
+ {
+  "reason" : 5,
+  "quitnumber" : 31
+ },
+ {
+  "reason" : 5,
+  "quitnumber" : 32
+ },
+ {
+  "reason" : 2,
+  "quitnumber" : 33
+ },
+ {
+  "reason" : 4,
+  "quitnumber" : 34
+ },
+ {
+  "reason" : 6,
+  "quitnumber" : 35
+ },
+ {
+  "reason" : 3,
+  "quitnumber" : 36
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 37
+ },
+ {
+  "reason" : 4,
+  "quitnumber" : 38
+ },
+ {
+  "reason" : 5,
+  "quitnumber" : 39
+ },
+ {
+  "reason" : 9,
+  "quitnumber" : 40
+ },
+ {
+  "reason" : 2,
+  "quitnumber" : 41
+ },
+ {
+  "reason" : 5,
+  "quitnumber" : 42
+ },
+ {
+  "reason" : 2,
+  "quitnumber" : 43
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 44
+ },
+ {
+  "reason" : 2,
+  "quitnumber" : 45
+ },
+ {
+  "reason" : 2,
+  "quitnumber" : 46
+ },
+ {
+  "reason" : 5,
+  "quitnumber" : 47
+ },
+ {
+  "reason" : 2,
+  "quitnumber" : 48
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 49
+ },
+ {
+  "reason" : 2,
+  "quitnumber" : 50
+ },
+ {
+  "reason" : 3,
+  "quitnumber" : 51
+ },
+ {
+  "reason" : 3,
+  "quitnumber" : 52
+ },
+ {
+  "reason" : 3,
+  "quitnumber" : 53
+ },
+ {
+  "reason" : 4,
+  "quitnumber" : 54
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 55
+ },
+ {
+  "reason" : 3,
+  "quitnumber" : 56
+ },
+ {
+  "reason" : 7,
+  "quitnumber" : 57
+ },
+ {
+  "reason" : 6,
+  "quitnumber" : 58
+ },
+ {
+  "reason" : 7,
+  "quitnumber" : 59
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 60
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 61
+ },
+ {
+  "reason" : 4,
+  "quitnumber" : 62
+ },
+ {
+  "reason" : 6,
+  "quitnumber" : 63
+ },
+ {
+  "reason" : 3,
+  "quitnumber" : 64
+ },
+ {
+  "reason" : 7,
+  "quitnumber" : 65
+ },
+ {
+  "reason" : 3,
+  "quitnumber" : 66
+ },
+ {
+  "reason" : 3,
+  "quitnumber" : 67
+ },
+ {
+  "reason" : 3,
+  "quitnumber" : 68
+ },
+ {
+  "reason" : 4,
+  "quitnumber" : 69
+ },
+ {
+  "reason" : 4,
+  "quitnumber" : 70
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 71
+ },
+ {
+  "reason" : 3,
+  "quitnumber" : 72
+ },
+ {
+  "reason" : 4,
+  "quitnumber" : 73
+ },
+ {
+  "reason" : 4,
+  "quitnumber" : 74
+ },
+ {
+  "reason" : 4,
+  "quitnumber" : 75
+ },
+ {
+  "reason" : 2,
+  "quitnumber" : 76
+ },
+ {
+  "reason" : 2,
+  "quitnumber" : 77
+ },
+ {
+  "reason" : 2,
+  "quitnumber" : 78
+ },
+ {
+  "reason" : 2,
+  "quitnumber" : 79
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 80
+ },
+ {
+  "reason" : 3,
+  "quitnumber" : 81
+ },
+ {
+  "reason" : 6,
+  "quitnumber" : 82
+ },
+ {
+  "reason" : 6,
+  "quitnumber" : 83
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 84
+ },
+ {
+  "reason" : 4,
+  "quitnumber" : 85
+ },
+ {
+  "reason" : 4,
+  "quitnumber" : 86
+ },
+ {
+  "reason" : 6,
+  "quitnumber" : 87
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 88
+ },
+ {
+  "reason" : 6,
+  "quitnumber" : 89
+ },
+ {
+  "reason" : 7,
+  "quitnumber" : 90
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 91
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 92
+ },
+ {
+  "reason" : 3,
+  "quitnumber" : 93
+ },
+ {
+  "reason" : 3,
+  "quitnumber" : 94
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 95
+ },
+ {
+  "reason" : 2,
+  "quitnumber" : 96
+ },
+ {
+  "reason" : 4,
+  "quitnumber" : 97
+ },
+ {
+  "reason" : 2,
+  "quitnumber" : 98
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 99
+ },
+ {
+  "reason" : 6,
+  "quitnumber" : 100
+ },
+ {
+  "reason" : 6,
+  "quitnumber" : 101
+ },
+ {
+  "reason" : 2,
+  "quitnumber" : 102
+ },
+ {
+  "reason" : 5,
+  "quitnumber" : 103
+ },
+ {
+  "reason" : 3,
+  "quitnumber" : 104
+ },
+ {
+  "reason" : 6,
+  "quitnumber" : 105
+ },
+ {
+  "reason" : 3,
+  "quitnumber" : 106
+ },
+ {
+  "reason" : 7,
+  "quitnumber" : 107
+ },
+ {
+  "reason" : 7,
+  "quitnumber" : 108
+ },
+ {
+  "reason" : 6,
+  "quitnumber" : 109
+ },
+ {
+  "reason" : 2,
+  "quitnumber" : 110
+ },
+ {
+  "reason" : 6,
+  "quitnumber" : 111
+ },
+ {
+  "reason" : 4,
+  "quitnumber" : 112
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 113
+ },
+ {
+  "reason" : 4,
+  "quitnumber" : 114
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 115
+ },
+ {
+  "reason" : 4,
+  "quitnumber" : 116
+ },
+ {
+  "reason" : 3,
+  "quitnumber" : 117
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 118
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 119
+ },
+ {
+  "reason" : 3,
+  "quitnumber" : 120
+ },
+ {
+  "reason" : 5,
+  "quitnumber" : 121
+ },
+ {
+  "reason" : 2,
+  "quitnumber" : 122
+ },
+ {
+  "reason" : 3,
+  "quitnumber" : 123
+ },
+ {
+  "reason" : 2,
+  "quitnumber" : 124
+ },
+ {
+  "reason" : 3,
+  "quitnumber" : 125
+ },
+ {
+  "reason" : 2,
+  "quitnumber" : 126
+ },
+ {
+  "reason" : 3,
+  "quitnumber" : 127
+ },
+ {
+  "reason" : 2,
+  "quitnumber" : 128
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 129
+ },
+ {
+  "reason" : 5,
+  "quitnumber" : 130
+ },
+ {
+  "reason" : 4,
+  "quitnumber" : 131
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 132
+ },
+ {
+  "reason" : 5,
+  "quitnumber" : 133
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 134
+ },
+ {
+  "reason" : 2,
+  "quitnumber" : 135
+ },
+ {
+  "reason" : 3,
+  "quitnumber" : 136
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 137
+ },
+ {
+  "reason" : 7,
+  "quitnumber" : 138
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 139
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 140
+ },
+ {
+  "reason" : 4,
+  "quitnumber" : 141
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 142
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 143
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 144
+ },
+ {
+  "reason" : 2,
+  "quitnumber" : 145
+ },
+ {
+  "reason" : 2,
+  "quitnumber" : 146
+ },
+ {
+  "reason" : 3,
+  "quitnumber" : 147
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 148
+ },
+ {
+  "reason" : 4,
+  "quitnumber" : 149
+ },
+ {
+  "reason" : 6,
+  "quitnumber" : 150
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 151
+ },
+ {
+  "reason" : 7,
+  "quitnumber" : 152
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 153
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 154
+ },
+ {
+  "reason" : 7,
+  "quitnumber" : 155
+ },
+ {
+  "reason" : 7,
+  "quitnumber" : 156
+ },
+ {
+  "reason" : 2,
+  "quitnumber" : 157
+ },
+ {
+  "reason" : 6,
+  "quitnumber" : 158
+ },
+ {
+  "reason" : 4,
+  "quitnumber" : 159
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 160
+ },
+ {
+  "reason" : 6,
+  "quitnumber" : 161
+ },
+ {
+  "reason" : 2,
+  "quitnumber" : 162
+ },
+ {
+  "reason" : 4,
+  "quitnumber" : 163
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 164
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 165
+ },
+ {
+  "reason" : 2,
+  "quitnumber" : 166
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 167
+ },
+ {
+  "reason" : 2,
+  "quitnumber" : 168
+ },
+ {
+  "reason" : 7,
+  "quitnumber" : 169
+ },
+ {
+  "reason" : 7,
+  "quitnumber" : 170
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 171
+ },
+ {
+  "reason" : 3,
+  "quitnumber" : 172
+ },
+ {
+  "reason" : 4,
+  "quitnumber" : 173
+ },
+ {
+  "reason" : 10,
+  "quitnumber" : 174
+ },
+ {
+  "reason" : 2,
+  "quitnumber" : 175
+ },
+ {
+  "reason" : 4,
+  "quitnumber" : 176
+ },
+ {
+  "reason" : 4,
+  "quitnumber" : 177
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 178
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 179
+ },
+ {
+  "reason" : 7,
+  "quitnumber" : 180
+ },
+ {
+  "reason" : 6,
+  "quitnumber" : 181
+ },
+ {
+  "reason" : 4,
+  "quitnumber" : 182
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 183
+ },
+ {
+  "reason" : 2,
+  "quitnumber" : 184
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 185
+ },
+ {
+  "reason" : 2,
+  "quitnumber" : 186
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 187
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 188
+ },
+ {
+  "reason" : 6,
+  "quitnumber" : 189
+ },
+ {
+  "reason" : 2,
+  "quitnumber" : 190
+ },
+ {
+  "reason" : 2,
+  "quitnumber" : 191
+ },
+ {
+  "reason" : 4,
+  "quitnumber" : 192
+ },
+ {
+  "reason" : 9,
+  "quitnumber" : 193
+ },
+ {
+  "reason" : 4,
+  "quitnumber" : 194
+ },
+ {
+  "reason" : 4,
+  "quitnumber" : 195
+ },
+ {
+  "reason" : 4,
+  "quitnumber" : 196
+ },
+ {
+  "reason" : 2,
+  "quitnumber" : 197
+ },
+ {
+  "reason" : 4,
+  "quitnumber" : 198
+ },
+ {
+  "reason" : 7,
+  "quitnumber" : 199
+ },
+ {
+  "reason" : 7,
+  "quitnumber" : 200
+ },
+ {
+  "reason" : 4,
+  "quitnumber" : 201
+ },
+ {
+  "reason" : 2,
+  "quitnumber" : 202
+ },
+ {
+  "reason" : 5,
+  "quitnumber" : 203
+ },
+ {
+  "reason" : 2,
+  "quitnumber" : 204
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 205
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 206
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 207
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 208
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 209
+ },
+ {
+  "reason" : 2,
+  "quitnumber" : 210
+ },
+ {
+  "reason" : 3,
+  "quitnumber" : 211
+ },
+ {
+  "reason" : 4,
+  "quitnumber" : 212
+ },
+ {
+  "reason" : 3,
+  "quitnumber" : 213
+ },
+ {
+  "reason" : 4,
+  "quitnumber" : 214
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 215
+ },
+ {
+  "reason" : 8,
+  "quitnumber" : 216
+ }
+]

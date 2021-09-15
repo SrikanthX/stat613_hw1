@@ -1,0 +1,357 @@
+---
+title: "stat-613-hw1"
+author: "Srikanth Sivashankaran"
+date: "9/15/2021"
+output: 
+  html_document:
+      code_folding: show
+      df_print: paged
+---
+
+
+
+## {.tabset .tabset-pills}
+
+### Overview
+
+This notebook demonstrates HW1 with R. 
+
+Let's start by importing some libraries to interact with the data:
+
+```{r imports, message =FALSE}
+library(tidyverse) # a framework that supplies an expressive grammar for data manipulation
+library(jsonlite) # exporting data from JMP is a pain in the ass.  In this case it was exported as JSON
+library(ggplot2) # pretty plots
+library(vtable) # concise data summaries
+library(qicharts) # for quality control charts
+library(ggpmisc) # add'l graphing functionality
+```
+
+### Q1, terminate.jmp
+> A company has been forced into across the board layoffs. It has decided to use a summary evaluation criteria made from scores on a number of individual characteristics, such as team work, creativity and productivity. There are 14 such criteria and the best score you can get is a zero, and the worst a 5. An individual's final score on a criterion is the difference between the value assigned and a company provided expectation. For example, if you were a Director, and Directors needed to score 1 on creativity, but you were given a 3, your component score would be plus 2. In other words, exceeding expectations would give you a negative score, but failing to meet them would give you a positive score. The component scores are added together to get a final score. In this context a high score is bad news, you get terminated, and a low score is good news.  
+
+> The scores for 98 employees are presented in terminate.jmp.
+
+> Look at the distribution of scores. Describe in a non-technical way any surprising features in the distribution of the total evaluation score given the fact that each person's data was generated from 14 separate characteristics.  
+
+Load the data:
+```{r getTerminate, message =FALSE, warning=FALSE}
+Terminate <- jsonlite::fromJSON(("./data/Terminate.json"))
+Terminate
+```
+
+Summarize it: 
+```{r}
+vtable::sumtable(Terminate)
+```
+
+Plot histogram and normal quantile plot
+```{r, message = FALSE, warning=FALSE}
+Terminate %>% ggplot2::ggplot(aes(x=Rating)) + geom_histogram()
+Terminate %>% ggplot2::ggplot(aes(sample=Rating)) + stat_qq() + stat_qq_line()
+```
+
+10 values are missing.  The distribution is right skewed and the normal quantile plot indicates that it deviates significantly from what we would expect of a normal distribution.
+
+The theoretical maximum score on this assessment would be 70, where the firm sets the standard at 0 for each criterion and the employee is rated “maximally deficient” at 5.  The theoretical minimum is -70, where the firm’s standard is 5 on each criterion and the employee is rated at 0.  The interpretation of the right skew is that many employees fall below expectations, and the expectations are fairly stringent, considering that the max is near to the point where the max on all 14 criteria would be zero.
+
+We would want to explore whether employee position explains any variation in the distribution of ratings, since the question implies that criteria can vary by position.
+
+Finally, the central limit theorem would hold that the aggregation of many observations, all else equal, tends to yield a normal distribution; the fact that 14 such observations across 88 people does not yield a normal distribution is surprising.  We’d want to see the aggregate of many more people before further investigation.
+
+### Q2, A1Q1.jmp {.tabset .tabset-pills}
+> Fast-food outlets have a continuing problem with employee turnover. A district office for one chain obtained reasons for leaving for each of 216 part-time employees (mostly students) who quit over a 6-month period. Codes for reasons that employees quit are as follows: 
+
+> 1 = moving from area, 2 = time conflict with school work, 3 = new job with better hours, 4 = new job with better pay, 5 = conflict with other employees, 6 = conflict with supervisors, 7 = conflict with customers, 8 = inadequate pay, 9 = dislike of tasks, 10 = other.
+
+#### a
+> a. Select the A IQ 1.JMP data set using the File menu of JMP. Use the Distribution of Y command from the Analysis menu to obtain a summary of the reasons for quitting. From the chart, what ought this chain do to reduce the problem of employee turnover?
+
+Load the data:
+```{r warning = F}
+A1Q1 <- jsonlite::fromJSON("./data/A1Q1.json")
+A1Q1
+```
+
+Ostensibly, `quitnumber` is a person identifier.  
+
+Let's stupidly obtain a histogram for the data:
+
+```{r warning = F, message = F}
+A1Q1 %>% ggplot2::ggplot(aes(x=reason)) + geom_histogram()
+```
+
+`reason` is a categorical and not continuous variable.  Let's recode the data with the meanings associated with each numerical reason:
+
+```{r}
+A1Q1recoded <- A1Q1 %>%
+                mutate(reason = recode(reason, 
+                                       "1" = "moving from area",
+                                       "2" = "time conflict with school work",
+                                       "3" = "new job with better hours",
+                                       "4" = "new job with better pay",
+                                       "5" = "conflict with other employees",
+                                       "6" = "conflict with supervisors",
+                                       "7" = "conflict with customers",
+                                       "8" = "inadequate pay",
+                                       "9" = "dislike of tasks",
+                                       "10" = "other"
+                                      ))
+```
+
+Obtain a frequency table from the data:
+```{r}
+A1Q1recoded %>% count(reason) %>% arrange(-n)
+```
+
+The two leading reasons are inadequate pay and time conflict with school work, but closer examination reveals that the four leading reasons for quitting actually encode just two factors: pay and conflicts with other schedules.  The firm should look to see if it can pay these employees better and find a way to schedule their hours more flexibly.  All of the conflict variables appear with roughly equal frequency, so the firm may also want to look into developing a more harmonious corporate culture.
+
+#### b
+> Obtain the mean, the median, and the standard deviation for "reason." What do these numbers mean in this context?
+
+```{r warning=FALSE}
+A1Q1 %>%
+  summarise(mean = mean(reason), median = median(reason), sd = sd(reason))
+```
+The mean, median and standard deviation don’t actually mean anything because the variable is categorical.
+
+### Q3, A1Q3.jmp
+
+> As assistant to the president of a regional potato chip maker, you've been asked to analyze the results of a comparison of a national brand (coded as number I in the data set) to your brand (coded as 2). One part of the problem is the actual fill of nominal 16-ounce packages. One of the better ways to lose customers is to give them packages that don't contain the advertised amount. The Al Q3.JMP data contains actual weights of equal numbers of packages of the two brands.
+
+> Report briefly to the president as to how your brand (Brand 2) compares to the national brand (Brand 1); she can figure out averages herself, but requests your help in further analyzing the data. (The essence of this data comes from Ron Feuerstein; the data have been disguised to avoid libel suits, but they reflect Feuerstein's findings.)
+
+Load the data:
+```{r, warning = FALSE}
+A1Q3 <- jsonlite::fromJSON("./data/A1Q3.json")
+A1Q3
+```
+
+Summarize it:
+```{r}
+A1Q3 %>%
+  group_by(brand) %>%
+  summarise(mean(weight), median(weight), sd(weight), max(weight), min(weight))
+```
+
+Side-by-side boxplots are a helpful illustration:
+```{r}
+A1Q3 %>%
+  mutate(brand = recode(brand, "1" = "national brand", "2" = "my brand")) %>%
+  mutate(brand = factor(brand)) %>%
+  ggplot(aes(y = weight, x= brand, fill = brand)) + geom_boxplot() + geom_jitter()
+```
+
+After recoding brand as a categorical variable, the associated box plot reveals far more variation in the observed weights of “our” brand than in those of the national brand.  The interquartile range of our brand goes from about 15.7 to about 16.4; the interquartile range of the national brand goes from about 15.95 to about 16.1.  This visualization also indicates that our brand has a higher median weight than the national brand, and that the data exhibits one outlier for the national brand.
+
+### Q4, A1Q4.jmp
+> National and international motel chains have toll-free reservation numbers. The waiting time between placing the call and obtaining a reservation agent is a major determinant of service quality. Long waits lose customers. One chain has a target that the average weight should be about 20 seconds. This target balances the annoyance felt by waiting customers with the high cost of keeping excess agents on duty. The chain's eight inspectors call the reservation number each day, recording the waiting time. The data for the last 30 days are in the Al Q4.JMP data set. Does the call waiting time meet the target? If not, in what way does it deviate from the goals?
+
+Load and inspect the data:
+```{r}
+A1Q4 <- jsonlite::fromJSON("./data/A1Q4.json")
+A1Q4
+```
+
+Plot the data:
+```{r}
+A1Q4 %>% 
+  ggplot(aes(x=daynumber, y = wait)) + geom_point()
+```
+
+The plot suggests that the process (call waiting times) is not stable.  There is decently significant variation in wait times by day.  As for wait times irrespective of day:
+```{r message = F}
+histogram <- A1Q4 %>% 
+              ggplot2::ggplot(aes(x=wait)) + geom_histogram()
+qqplot <- A1Q4 %>%
+            ggplot2::ggplot(aes(sample=wait)) + stat_qq() + stat_qq_line()
+gridExtra::grid.arrange(histogram,qqplot,ncol=2)
+```
+
+Control limits will be applied according to the mean and standard deviation, assuming a batch size of 8, as in the following quality control chart:
+
+```{r }
+  xbar <- qicharts::qic(wait, x = daynumber, chart = 'xbar', data = A1Q4)
+  s <- qicharts::qic(wait, x = daynumber, chart = 's', data = A1Q4)
+  
+  
+```
+
+The XBar chart does not look randomly distributed about the mean.  There is a first “hump” on days 6 through 10, and then a dip through the remaining days.  This replicates what we appear to have seen when plotting wait against day.  Thus we’d again suggest that this process is not in control.  It is also notable, however, that all of the xbars are within the control limits; the mean of wait times appears to be stably within limits, but taken in combination with the S chart, we again see that variation in wait times was substantial on day 9.
+
+Taking these facts together, we would suggest that the call waiting time appears to be meeting its target in the sense that the observed wait times were well within control limits, but the instability of the underlying process suggests that the motel chain should increase the number of samples and attempt to investigate other potential sources of variation, like the time of call and the customer serviceperson.
+
+### Q5, A1Q5.jmp
+> A tool manufacturer sells masonry drill bits to contractors and homeowners. One critical dimension of bit quality is hardness. Too soft a bit causes rapid wearout; too hard a bit causes dangerous brittleness. The target value for hardness is 16.0 on a standard scale. Specifications allow a standard deviation of 0.5. Problems result from defective batches of metal and improper tempering in a furnace. Metal batches change every second day. Furnace problems evolve gradually, rather than going haywire suddenly. The A 1 Q5.JMP data set contains 5 hardness measures per day.
+
+> Obtain the average and the standard deviation for each day using the quality control charts. Are the produced drill bits meeting the standards? If not, in what way do they deviate from the goals?
+
+```{r warning=FALSE}
+A1Q5 <- jsonlite::fromJSON("./data/A1Q5.json")
+A1Q5
+```
+The process of building drill bits is not stable, indicating a clear downward trend in hardness:
+
+```{r}
+A1Q5 %>% 
+  ggplot(aes(x=day, y = hardness)) + geom_point()
+```
+
+However, the distribution of drill bit hardness irrespective of day appears to be approximately normal: 
+
+```{r}
+histogram <- A1Q5 %>% 
+              ggplot2::ggplot(aes(x=hardness)) + geom_histogram()
+qqplot <- A1Q5 %>%
+            ggplot2::ggplot(aes(sample=hardness)) + stat_qq() + stat_qq_line()
+gridExtra::grid.arrange(histogram,qqplot,ncol=2)
+```
+
+The XBar and S Charts with the engineering specifications of a mean 16.0 hardness and 0.5 allowed standard deviation are as follows: 
+
+```{r }
+  xbar <- qicharts::qic(hardness, x = day, chart = 'xbar', data = A1Q5, target = 16)
+  s <- qicharts::qic(hardness, x = day, chart = 's', data = A1Q5, target = 0.5)
+  
+  
+```
+
+Toward the end of the month, the x-bar chart indicates that the bit production process is falling below engineering specifications, and is therefore not capable.  However, the process does appear to be more capable in the standard deviation (“S”) than it is in the mean; the standard deviation on most days falls below an observed average of .470 (and therefore, below the engineering standard of 0.5).  
+
+### Q6, PW.jmp {.tabset .tabset-pills}
+> Part of a c ompany’s operations involves moving items around a plant. These items are moved in containers and the plant contains scales to weigh the containers. However, the information reporting system demands "piece counts" for productivity measures, so that these weights have to be multiplied by a density factor, pieces per pound. 
+
+> The current density factors may be inaccurate and management has hired outside consultants to re-evaluate the density factors. There is only one way to do this; sample the items, count them and weigh them. 
+
+> The consultants developed a methodology that included instructions to data collectors to obtain random samples of approximately 100 items from a large container, and then to accurately weigh these counted items. It takes about 10 minutes to count out roughly 100 items and it would be impracticable to take out more than 200 items because it would slow the plant process down too much. 
+
+> The data collectors recorded the number of pieces sampled, the weight in pounds of the sample and also the net weight of the container from which the sample was drawn (also in pounds). 
+
+> The data was recorded by hand on a form that had holders for each digit. It looked something like this: 
+
+> Data collectors were instructed tofill in all squares because the data was going to be fed through an Optical Character Reader (OCR) machine and then into a database for analysis. For example, entering 132 pieces, 3.17 lbs and a net container weight of 643 lbs would look like this: 
+
+> Feeding data through the OCR would reduce costs substantially and speed the process. The consultants have come back to you with the initial data. Take a look at PW.jmp.
+
+#### a and b
+> Describe the shape of the distributions and discuss the summary statistics in the context of objectives of the exercise.; Describe any surprising features in the histograms. 
+
+Load the data:
+```{r warning=F}
+PW <- jsonlite::fromJSON("./data/PW.json")
+PW <- PW[,1:3]
+PW
+```
+
+```{r warning=F} 
+PW %>% 
+      ggplot2::ggplot(aes(x=Pieces)) + geom_histogram()
+PW %>%
+  vtable::sumtable(vars = "Pieces",summ = c('notNA(x)','mean(x)','sd(x)','min(x)','pctile(x)[25]','median(x)','pctile(x)[75]','max(x)'))
+PW %>% 
+      ggplot2::ggplot(aes(x=Weight)) + geom_histogram()
+PW %>%
+  vtable::sumtable(vars = "Weight",summ = c('notNA(x)','mean(x)','sd(x)','min(x)','pctile(x)[25]','median(x)','pctile(x)[75]','max(x)'))
+PW %>% 
+      ggplot2::ggplot(aes(x=Net)) + geom_histogram()
+PW %>%
+  vtable::sumtable(vars = "Net",summ = c('notNA(x)','mean(x)','sd(x)','min(x)','pctile(x)[25]','median(x)','pctile(x)[75]','max(x)'))
+
+```
+
+Something has clearly gone awry.  Participants were instructed to collect approximately 100 items, and yet the median number of pieces collected is 138.  
+
+The question also indicates that it is impractical to take out more than 200 items, and yet an examination of the data indicates that 1,543 of the 13,850 records exceed 200 items.
+
+The observed values are obviously not normally distributed for any of the three figures being tracked.  Instead, in each of these cases the interquartile range is narrow relative to a wide band of outliers that significantly exceed reasonable expectations.
+
+```{r}
+  PW %>%
+    filter(Pieces>200) %>%
+    nrow
+```
+
+Because the item of business interest is the (inverse) density estimate, we should also consider the distribution of pieces per pound:
+```{r warning = F}
+histogram <- PW %>% 
+              mutate(invDensity = Pieces/Weight) %>%
+              ggplot2::ggplot(aes(x=invDensity)) + geom_histogram()
+qqplot <- PW %>%
+            mutate(invDensity = Pieces/Weight) %>%
+            ggplot2::ggplot(aes(sample=invDensity)) + stat_qq() + stat_qq_line()
+gridExtra::grid.arrange(histogram,qqplot,ncol=2)
+```
+This figure replicates what is observed in the other cases: significant right skew.
+
+#### c
+> Noting the path traversed by the data to make its way into the database, comment on any problems you think may have corrupted the data
+
+Considering that the values that don’t conform to the prevailing patterns are almost all significantly higher than what is otherwise observed, it seems possible that values were entered in a way that led the OCR to overestimate their magnitudes.  Specifically, it seems possible that participants may not have left-zero padded counts and weights, and the OCR process may, as a result, have multiplied the intended amounts by ten, one hundred, or one thousand.
+
+One way to investigate this is to consider patterns in the final digit of the values for each field in these observations:
+
+```{r}
+PW %>%
+  mutate(lastDigit_Pieces = substr(x=as.character(Pieces),start = nchar(as.character(Pieces)), stop=   nchar(as.character(Pieces)))) %>%
+  count(lastDigit_Pieces) %>%
+  arrange(-n)
+```
+
+
+```{r}
+PW %>%
+  mutate(lastDigit_Weight = substr(x=as.character(Weight),start = nchar(as.character(Weight)), stop=   nchar(as.character(Weight)))) %>%
+  count(lastDigit_Weight) %>%
+  arrange(-n)
+```
+
+```{r}
+PW %>%
+  mutate(lastDigit_Net = substr(x=as.character(Net),start = nchar(as.character(Net)), stop=   nchar(as.character(Net)))) %>%
+  count(lastDigit_Net) %>%
+  arrange(-n)
+```
+
+We would note that the plurality of net weights and of number of pieces ended in zero.  This does not appear to be the case for the last digit in weight, but we should also check the second digit in weight.  The process that generates this data does appear to be rounding after the decimal point; it may be that “05.00” gets properly interpreted as 5, but “5_.__” gets interpreted as fifty.  One way to investigate this would be to look at the distribution of second digits in values ten or greater:
+
+```{r}
+PW %>%
+    filter(Weight >= 10) %>%
+    mutate(second_digit_Weight = substr(x=as.character(Weight),2, stop=   2)) %>%
+    count(second_digit_Weight) %>%
+    arrange(-n)
+```
+
+Again we see that the plurality of second digits is zero, where weight is greater than or equal to 10.  The OCR misinterpretation pattern holds.
+
+#### d
+> If you have thought of a reason to remove some suspect data, then how sensitive is the pieces per pound estimate to the suspect data?
+
+If we remove the values that we believe were systematically overestimated, the observed number of pieces should decrease significantly; their weight, however, is not misinterpreted as systematically as the number of pieces, because the phenomenon appears to apply only to those weights that were greater than 10.  Thus, if we were to remove the suspect data, we would expect the mean pieces per pound (inverse density) figure to decrease; both numerator and denominator are overestimated, but the overestimation occurs more commonly in the numerator.
+
+We can examine all observations where the number of pieces remained within what the question suggests is a practical level and the weight was below 10:
+
+```{r}
+reasonablePW <- PW %>%
+                  filter(Pieces <= 200 & Weight < 10)
+histogram <- reasonablePW %>%
+              ggplot2::ggplot(aes(x=Pieces)) + geom_histogram()
+qqplot <- reasonablePW %>%
+            ggplot2::ggplot(aes(sample=Pieces)) + stat_qq() + stat_qq_line()
+gridExtra::grid.arrange(histogram,qqplot,ncol=2)
+histogram <- reasonablePW %>%
+              ggplot2::ggplot(aes(x=Weight)) + geom_histogram()
+qqplot <- reasonablePW %>%
+            ggplot2::ggplot(aes(sample=Weight
+                                )) + stat_qq() + stat_qq_line()
+gridExtra::grid.arrange(histogram,qqplot,ncol=2)
+histogram <- reasonablePW %>%
+              ggplot2::ggplot(aes(x=Net)) + geom_histogram()
+qqplot <- reasonablePW %>%
+            ggplot2::ggplot(aes(sample=Net
+                                )) + stat_qq() + stat_qq_line()
+gridExtra::grid.arrange(histogram,qqplot,ncol=2)
+            
+```
+
+This filter causes the number of pieces and the weight to appear approximately normal.  There seems to remain some source of exotic variation in the Net weight, however.
