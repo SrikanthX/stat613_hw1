@@ -1,6 +1,6 @@
 ---
 title: "stat-613-hw1"
-author: "Srikanth Sivashankaran"
+author: "Srikanth"
 date: "9/15/2021"
 output: 
   html_document:
